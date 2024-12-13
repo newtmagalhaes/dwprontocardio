@@ -1,0 +1,12 @@
+SELECT 
+    ic.CD_SOL_COM
+    , ic.CD_PRODUTO
+    , ic.CD_UNI_PRO
+    , ic.CD_MOT_CANCEL
+    , ic.DT_CANCEL
+    , ic.QT_SOLIC
+    , ic.QT_COMPRADA
+    , ic.QT_ATENDIDA
+    , ic.SN_COMPRADO
+FROM DBAMV.ITSOL_COM ic
+WHERE ic.CD_SOL_COM > :MAIOR_ID

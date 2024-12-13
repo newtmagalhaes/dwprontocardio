@@ -1,0 +1,9 @@
+SELECT 
+    lp.CD_LOT_PRO
+    , lp.CD_ESTOQUE
+    , lp.CD_PRODUTO
+    , lp.CD_LOTE
+    , lp.DT_VALIDADE
+    , lp.QT_ESTOQUE_ATUAL
+FROM DBAMV.LOT_PRO lp
+WHERE lp.CD_LOT_PRO > :MAIOR_ID

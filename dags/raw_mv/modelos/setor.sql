@@ -1,0 +1,10 @@
+
+SELECT 
+    s.CD_SETOR
+    , s.CD_FATOR
+    , s.CD_GRUPO_DE_CUSTO
+    , s.CD_SETOR_CUSTO
+    , s.NM_SETOR
+    , s.SN_ATIVO
+FROM DBAMV.SETOR s
+WHERE s.CD_SETOR > :MAIOR_ID

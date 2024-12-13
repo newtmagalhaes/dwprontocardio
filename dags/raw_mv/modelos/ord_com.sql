@@ -1,0 +1,16 @@
+SELECT 
+    oc.CD_ORD_COM
+    , oc.CD_ESTOQUE
+    , oc.CD_FORNECEDOR
+    , oc.CD_SOL_COM
+    , oc.CD_MOT_CANCEL
+    , oc.CD_USUARIO_CRIADOR_OC
+    , oc.CD_ULTIMO_USU_ALT_OC
+    , oc.DT_ORD_COM
+    , oc.DT_CANCELAMENTO
+    , oc.DT_AUTORIZACAO
+    , oc.DT_ULTIMA_ALTERACAO_OC
+    , oc.TP_ORD_COM
+    , oc.SN_AUTORIZADO
+FROM DBAMV.ORD_COM oc
+WHERE oc.CD_ORD_COM > :MAIOR_ID
