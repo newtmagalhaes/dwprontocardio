@@ -1,0 +1,13 @@
+
+dbt_suprimentos:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: "{{ env_var('POSTGRES_USER', 'dbadw') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'mudar123') }}"
+      port: "{{ env_var('POSTGRES_PORT', '5434') | int }}"
+      dbname: "{{ env_var('POSTGRES_DBNAME', 'dwprontocardio') }}"
+      schema: "{{ env_var('POSTGRES_SCHEMA', 'dwprontocardio') }}"
+      threads: 1
