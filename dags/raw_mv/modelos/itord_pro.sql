@@ -1,0 +1,16 @@
+SELECT
+    ip.CD_ORD_COM
+    , ip.CD_PRODUTO
+    , ip.CD_UNI_PRO
+    , ip.CD_MOT_CANCEL
+    , ip.DT_CANCEL
+    , ip.QT_COMPRADA
+    , ip.QT_ATENDIDA
+    , ip.QT_RECEBIDA
+    , ip.QT_CANCELADA
+    , ip.VL_UNITARIO
+    , ip.VL_TOTAL
+    , ip.VL_CUSTO_REAL
+    , ip.VL_TOTAL_CUSTO_REAL
+FROM DBAMV.ITORD_PRO ip
+WHERE ip.CD_ORD_COM > :MAIOR_ID

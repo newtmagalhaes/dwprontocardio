@@ -1,0 +1,24 @@
+SELECT
+    ep.CD_ENT_PRO
+    , ep.CD_TIP_ENT
+    , ep.CD_ESTOQUE
+    , ep.CD_FORNECEDOR
+    , ep.CD_ORD_COM
+    , ep.CD_USUARIO_RECEBIMENTO
+    , ep.CD_ATENDIMENTO
+    , CASE WHEN EXTRACT(YEAR FROM ep.DT_EMISSAO) < 0 THEN 
+        TO_DATE(
+            ABS(EXTRACT(YEAR FROM ep.DT_EMISSAO)) || '-' || 
+            LPAD(EXTRACT(MONTH FROM ep.DT_EMISSAO) || '', 2, '0') || '-' || 
+            LPAD(EXTRACT(DAY FROM ep.DT_EMISSAO) || '', 2, '0'),
+            'YYYY-MM-DD' ) ELSE ep.DT_EMISSAO
+      END AS DT_EMISSAO
+    , ep.DT_ENTRADA
+    , COALESCE(ep.DT_RECEBIMENTO, ep.HR_ENTRADA) AS DT_RECEBIMENTO
+    , ep.HR_ENTRADA
+    , ep.VL_TOTAL
+    , ep.NR_DOCUMENTO
+    , ep.NR_CHAVE_ACESSO
+    , ep.SN_AUTORIZADO
+FROM DBAMV.ENT_PRO ep
+WHERE ep.CD_ENT_PRO > :MAIOR_ID

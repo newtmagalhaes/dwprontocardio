@@ -1,0 +1,9 @@
+SELECT 
+    up.CD_UNI_PRO
+    , up.CD_UNIDADE
+    , up.CD_PRODUTO
+    , up.VL_FATOR
+    , up.TP_RELATORIOS
+    , up.SN_ATIVO
+FROM DBAMV.UNI_PRO up
+WHERE up.CD_UNI_PRO > :MAIOR_ID
