@@ -1,0 +1,523 @@
+
+version: 2
+
+sources:
+  - name: staging
+    description: "Dados na camada staging, c/ tratamento, limpeza, definicicao de types e alias dos dados "
+    schema: staging
+    loaded_at_field: DT_EXTRACAO
+    freshness:
+      warn_after: {count: 1, period: day}
+      error_after: {count: 1, period: day}
+
+
+    tables:
+      - name: sol_com
+        identifier: sol_com
+        description: "Tabela com dados das solicitações de compra"
+        columns:
+          - name: id_sol_com
+            description: "ID criado na extração do banco de produção"
+          - name: CD_SOL_COM
+            description: "Código da solicitação de compra"
+          - name: CD_MOT_PED
+            description: "Código do motivo da solicitação"
+          - name: CD_SETOR
+            description: "Código do setor da solicitação"
+          - name: CD_ESTOQUE
+            description: "Código do estoque"
+          - name: CD_MOT_CANCEL
+            description: "Código do motivo de cancelamento"
+          - name: CD_ATENDIME
+            description: "Código de atendimento"
+          - name: NM_SOLICITANTE
+            description: "Nome do solicitante"
+          - name: DT_SOL_COM
+            description: "Data da solicitação de compra"
+          - name: DT_CANCELAMENTO
+            description: "Data de cancelamento da solicitação"
+          - name: VL_TOTAL
+            description: "Valor total da solicitação"
+          - name: TP_SITUACAO
+            description: "Tipo de situação da solicitação"
+          - name: TP_SOL_COM
+            description: "Tipo da solicitação de compra"
+          - name: SN_URGENTE
+            description: "Indicador se a solicitação é urgente"
+          - name: SN_APROVADA
+            description: "Indicador se a solicitação foi aprovada"
+          - name: SN_OPME
+            description: "Indicador se a solicitação é OPME"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: ord_com
+        identifier: ord_com
+        description: "Tabela com dados das ordens de compra"
+        columns:
+          - name: id_ord_com
+            description: "ID criado na extração do banco de produção"
+          - name: CD_ORD_COM
+            description: "Código da ordem de compra"
+          - name: CD_ESTOQUE
+            description: "Código do estoque"
+          - name: CD_FORNECEDOR
+            description: "Código do fornecedor"
+          - name: CD_SOL_COM
+            description: "Código da solicitação de compra"
+          - name: CD_MOT_CANCEL
+            description: "Código do motivo de cancelamento"
+          - name: CD_USUARIO_CRIADOR_OC
+            description: "Código do usuário criador da ordem de compra"
+          - name: CD_ULTIMO_USU_ALT_OC
+            description: "Código do último usuário que alterou a ordem de compra"
+          - name: DT_ORD_COM
+            description: "Data da ordem de compra"
+          - name: DT_CANCELAMENTO
+            description: "Data de cancelamento da ordem de compra"
+          - name: DT_AUTORIZACAO
+            description: "Data de autorização da ordem de compra"
+          - name: DT_ULTIMA_ALTERACAO_OC
+            description: "Data da última alteração na ordem de compra"
+          - name: TP_ORD_COM
+            description: "Tipo da ordem de compra"
+          - name: SN_AUTORIZADO
+            description: "Indicador se a ordem foi autorizada"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: ent_pro
+        identifier: ent_pro
+        description: "Tabela com dados de entrada de produtos"
+        columns:
+          - name: id_ent_pro
+            description: "ID criado na extração do banco de produção"
+          - name: CD_ENT_PRO
+            description: "Código da entrada do produto"
+          - name: CD_TIP_ENT
+            description: "Código do tipo de entrada"
+          - name: CD_ESTOQUE
+            description: "Código do estoque associado"
+          - name: CD_FORNECEDOR
+            description: "Código do fornecedor"
+          - name: CD_ORD_COM
+            description: "Código da ordem de compra"
+          - name: CD_USUARIO_RECEBIMENTO
+            description: "Código do usuário responsável pelo recebimento"
+          - name: CD_ATENDIMENTO
+            description: "Código do atendimento associado"
+          - name: DT_EMISSAO
+            description: "Data de emissão"
+          - name: DT_ENTRADA
+            description: "Data de entrada"
+          - name: DT_RECEBIMENTO
+            description: "Data de recebimento"
+          - name: HR_ENTRADA
+            description: "Hora de entrada"
+          - name: VL_TOTAL
+            description: "Valor total"
+          - name: NR_DOCUMENTO
+            description: "Número do documento"
+          - name: NR_CHAVE_ACESSO
+            description: "Número da chave de acesso"
+          - name: SN_AUTORIZADO
+            description: "Indicador de autorização"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: itsol_com
+        identifier: itsol_com
+        description: "Tabela com dados dos itens de solicitações de compra"
+        columns:
+          - name: id_itsol_com
+            description: "ID criado na extração do banco de produção"
+          - name: CD_SOL_COM
+            description: "Código da solicitação de compra associada"
+          - name: CD_PRODUTO
+            description: "Código do produto"
+          - name: CD_UNI_PRO
+            description: "Código da unidade do produto"
+          - name: CD_MOT_CANCEL
+            description: "Código do motivo de cancelamento"
+          - name: DT_CANCEL
+            description: "Data do cancelamento"
+          - name: QT_SOLIC
+            description: "Quantidade solicitada"
+          - name: QT_COMPRADA
+            description: "Quantidade comprada"
+          - name: QT_ATENDIDA
+            description: "Quantidade atendida"
+          - name: SN_COMPRADO
+            description: "Indicador se foi comprado (Sim ou Não)"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: itord_pro
+        identifier: itord_pro
+        description: "Tabela com dados dos itens de ordem de compra"
+        columns:
+          - name: id_itord_pro
+            description: "ID criado na extracao do banco de producao"
+          - name: CD_ORD_COM
+            description: "Codigo da ordem de compra associada"
+          - name: CD_PRODUTO
+            description: "Codigo do produto"
+          - name: CD_UNI_PRO
+            description: "Codigo da unidade do produto"
+          - name: CD_MOT_CANCEL
+            description: "Codigo do motivo de cancelamento"
+          - name: DT_CANCEL
+            description: "Data do cancelamento"
+          - name: QT_COMPRADA
+            description: "Quantidade comprada"
+          - name: QT_ATENDIDA
+            description: "Quantidade atendida"
+          - name: QT_RECEBIDA
+            description: "Quantidade recebida"
+          - name: QT_CANCELADA
+            description: "Quantidade cancelada"
+          - name: VL_UNITARIO
+            description: "Valor unitario"
+          - name: VL_TOTAL
+            description: "Valor total"
+          - name: VL_CUSTO_REAL
+            description: "Valor do custo real"
+          - name: VL_TOTAL_CUSTO_REAL
+            description: "Valor total do custo real"
+          - name: DT_EXTRACAO
+            description: "Data da extracao"
+
+            
+      - name: itent_pro
+        identifier: itent_pro
+        description: "Tabela com dados dos itens de entrada de produtos"
+        columns:
+          - name: id_itent_pro
+            description: "ID criado na extracao do banco de producao"
+          - name: CD_ITENT_PRO
+            description: "Codigo do item de entrada de produto"
+          - name: CD_ENT_PRO
+            description: "Codigo da entrada de produto associada"
+          - name: CD_PRODUTO
+            description: "Codigo do produto"
+          - name: CD_UNI_PRO
+            description: "Codigo da unidade do produto"
+          - name: CD_ATENDIMENTO
+            description: "Codigo de atendimento"
+          - name: CD_CUSTO_MEDIO
+            description: "Codigo do custo medio"
+          - name: CD_PRODUTO_FORNECEDOR
+            description: "Codigo do produto associado ao fornecedor"
+          - name: DT_GRAVACAO
+            description: "Data de gravacao"
+          - name: QT_ENTRADA
+            description: "Quantidade entrada"
+          - name: QT_DEVOLVIDA
+            description: "Quantidade devolvida"
+          - name: QT_ATENDIDA
+            description: "Quantidade atendida"
+          - name: VL_UNITARIO
+            description: "Valor unitario"
+          - name: VL_CUSTO_REAL
+            description: "Valor do custo real"
+          - name: VL_TOTAL_CUSTO_REAL
+            description: "Valor total do custo real"
+          - name: VL_TOTAL
+            description: "Valor total"
+          - name: DT_EXTRACAO
+            description: "Data da extracao"
+
+
+      - name: produto
+        identifier: produto
+        description: "Tabela com dados dos produtos"
+        columns:
+          - name: id_produto
+            description: "ID do produto"
+          - name: CD_PRODUTO
+            description: "Código do produto"
+          - name: CD_ESPECIE
+            description: "Código da espécie do produto"
+          - name: DS_PRODUTO
+            description: "Descrição do produto"
+          - name: DS_PRODUTO_RESUMIDO
+            description: "Descrição resumida do produto"
+          - name: DT_CADASTRO
+            description: "Data de cadastro do produto"
+          - name: DT_ULTIMA_ENTRADA
+            description: "Data da última entrada do produto"
+          - name: HR_ULTIMA_ENTRADA
+            description: "Hora da última entrada do produto"
+          - name: QT_ESTOQUE_ATUAL
+            description: "Quantidade atual em estoque"
+          - name: QT_ULTIMA_ENTRADA
+            description: "Quantidade da última entrada"
+          - name: VL_ULTIMA_ENTRADA
+            description: "Valor da última entrada do produto"
+          - name: VL_CUSTO_MEDIO
+            description: "Valor de custo médio do produto"
+          - name: VL_ULTIMA_CUSTO_REAL
+            description: "Valor do último custo real do produto"
+          - name: DT_EXTRACAO
+            description: "Data da extração dos dados"
+
+
+      - name: estoque
+        identifier: estoque
+        description: "Tabela com dados dos estoques"
+        columns:
+          - name: id_estoque
+            description: "ID criado na extração do banco de produção"
+          - name: CD_ESTOQUE
+            description: "Código do estoque"
+          - name: CD_SETOR
+            description: "Código do setor associado"
+          - name: DS_ESTOQUE
+            description: "Descrição do estoque"
+          - name: TP_ESTOQUE
+            description: "Tipo do estoque"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: est_pro
+        identifier: est_pro
+        description: "Tabela com dados de estoque de produtos"
+        columns:
+          - name: id_est_pro
+            description: "ID criado na extração do banco de produção"
+          - name: CD_ESTOQUE
+            description: "Código do estoque"
+          - name: CD_PRODUTO
+            description: "Código do produto"
+          - name: CD_LOCALIZACAO
+            description: "Código da localização"
+          - name: DS_LOCALIZACAO_PRATELEIRA
+            description: "Descrição da localização na prateleira"
+          - name: DT_ULTIMA_MOVIMENTACAO
+            description: "Data da última movimentação"
+          - name: QT_ESTOQUE_ATUAL
+            description: "Quantidade atual no estoque"
+          - name: QT_ESTOQUE_MAXIMO
+            description: "Quantidade máxima no estoque"
+          - name: QT_ESTOQUE_MINIMO
+            description: "Quantidade mínima no estoque"
+          - name: QT_ESTOQUE_VIRTUAL
+            description: "Quantidade virtual no estoque"
+          - name: QT_PONTO_DE_PEDIDO
+            description: "Quantidade no ponto de pedido"
+          - name: QT_CONSUMO_MES
+            description: "Quantidade consumida no mês"
+          - name: QT_SOLICITACAO_DE_COMPRA
+            description: "Quantidade solicitada para compra"
+          - name: QT_ORDEM_DE_COMPRA
+            description: "Quantidade em ordem de compra"
+          - name: QT_ESTOQUE_DOADO
+            description: "Quantidade doada no estoque"
+          - name: QT_ESTOQUE_RESERVADO
+            description: "Quantidade reservada no estoque"
+          - name: QT_CONSUMO_ATUAL
+            description: "Quantidade consumida atualmente"
+          - name: TP_CLASSIFICACAO_ABC
+            description: "Classificação ABC do estoque"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: uni_pro
+        identifier: uni_pro
+        description: "Tabela com informações sobre unidades de produtos"
+        columns:
+          - name: id_uni_pro
+            description: "ID da unidade do produto"
+          - name: CD_UNI_PRO
+            description: "Código da unidade do produto"
+          - name: CD_UNIDADE
+            description: "Código da unidade"
+          - name: CD_PRODUTO
+            description: "Código do produto"
+          - name: VL_FATOR
+            description: "Fator de conversão da unidade"
+          - name: TP_RELATORIOS
+            description: "Tipo de relatórios associados à unidade"
+          - name: SN_ATIVO
+            description: "Indica se a unidade está ativa"
+          - name: DT_EXTRACAO
+            description: "Data da extração dos dados"
+
+
+      - name: lot_pro
+        identifier: lot_pro
+        description: "Tabela com dados de lotes de produtos"
+        columns:
+          - name: id_lot_pro
+            description: "ID criado na extração do banco de produção"
+          - name: CD_LOT_PRO
+            description: "Código do lote de produto"
+          - name: CD_ESTOQUE
+            description: "Código do estoque associado"
+          - name: CD_PRODUTO
+            description: "Código do produto"
+          - name: CD_LOTE
+            description: "Código do lote"
+          - name: DT_VALIDADE
+            description: "Data de validade do lote"
+          - name: QT_ESTOQUE_ATUAL
+            description: "Quantidade atual no estoque do lote"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: fornecedor
+        identifier: fornecedor
+        description: "Tabela com dados dos fornecedores"
+        columns:
+          - name: id_fornecedor
+            description: "ID criado na extração do banco de produção"
+          - name: CD_FORNECEDOR
+            description: "Código do fornecedor"
+          - name: NM_FORNECEDOR
+            description: "Nome do fornecedor"
+          - name: NM_FANTASIA
+            description: "Nome fantasia do fornecedor"
+          - name: DT_INCLUSAO
+            description: "Data de inclusão"
+          - name: NR_CGC_CPF
+            description: "Número do CNPJ ou CPF"
+          - name: TP_FORNECEDOR
+            description: "Tipo do fornecedor"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: mot_cancel
+        identifier: mot_cancel
+        description: "Tabela com dados dos motivos de cancelamento"
+        columns:
+          - name: id_mot_cancel
+            description: "ID criado na extração do banco de produção"
+          - name: CD_MOT_CANCEL
+            description: "Código do motivo de cancelamento"
+          - name: DS_MOT_CANCEL
+            description: "Descrição do motivo de cancelamento"
+          - name: TP_MOT_CANCEL
+            description: "Tipo do motivo de cancelamento"
+          - name: DT_EXTRACAO
+            description: "Data da extração"
+
+
+      - name: setor
+        identifier: setor
+        description: "Tabela de setores com informações relacionadas a fatores, grupos de custo e status."
+        columns:
+          - name: CD_SETOR
+            description: "Código único identificador do setor."
+          - name: CD_FATOR
+            description: "Código relacionado ao fator do setor."
+          - name: CD_GRUPO_DE_CUSTO
+            description: "Código do grupo de custo associado ao setor."
+          - name: CD_SETOR_CUSTO
+            description: "Código do custo do setor."
+          - name: NM_SETOR
+            description: "Nome do setor."
+          - name: SN_ATIVO
+            description: "Indicador se o setor está ativo ('S' para Sim, 'N' para Não)."
+
+
+      - name: especie
+        identifier: especie
+        description: "Tabela de espécies com informações sobre itens relacionados e descrição."
+        columns:
+          - name: CD_ESPECIE
+            description: "Código único identificador da espécie."
+          - name: CD_ITEM_RES
+            description: "Código relacionado ao item correspondente à espécie."
+          - name: DS_ESPECIE
+            description: "Descrição da espécie."
+
+
+      - name: mvto_estoque
+        identifier: mvto_estoque
+        description: "Tabela de movimentação de estoque com informações detalhadas sobre transações."
+        columns:
+          - name: CD_MVTO_ESTOQUE
+            description: "Código único identificador da movimentação de estoque."
+          - name: CD_ESTOQUE
+            description: "Código do estoque relacionado à movimentação."
+          - name: CD_UNI_PRO
+            description: "Código da unidade de produto."
+          - name: CD_UNID_INT
+            description: "Código da unidade interna associada."
+          - name: CD_SETOR
+            description: "Código do setor relacionado à movimentação."
+          - name: CD_ESTOQUE_DESTINO
+            description: "Código do estoque de destino, quando aplicável."
+          - name: CD_CUSTO_MEDIO
+            description: "Código relacionado ao custo médio associado à movimentação."
+          - name: CD_AVISO_CIRURGIA
+            description: "Código de aviso de cirurgia relacionado à movimentação."
+          - name: CD_ENT_PRO
+            description: "Código da entrada do produto."
+          - name: CD_USUARIO
+            description: "Código do usuário responsável pela movimentação."
+          - name: CD_FORNECEDOR
+            description: "Código do fornecedor relacionado à movimentação."
+          - name: CD_PRESTADOR
+            description: "Código do prestador relacionado à movimentação."
+          - name: CD_PRE_MED
+            description: "Código do procedimento médico associado."
+          - name: CD_ATENDIMENTO
+            description: "Código do atendimento relacionado à movimentação."
+          - name: CD_MOT_DEV
+            description: "Código do motivo de devolução, se aplicável."
+          - name: DT_MVTO_ESTOQUE
+            description: "Data da movimentação de estoque."
+          - name: HR_MVTO_ESTOQUE
+            description: "Horário da movimentação de estoque."
+          - name: VL_TOTAL
+            description: "Valor total da movimentação."
+          - name: TP_MVTO_ESTOQUE
+            description: "Tipo de movimentação de estoque."
+          - name: NR_DOCUMENTO
+            description: "Número do documento associado à movimentação."
+          - name: CHAVE_NFE
+            description: "Chave da nota fiscal eletrônica associada à movimentação."
+
+
+      - name: itmvto_estoque
+        identifier: itmvto_estoque
+        description: "Tabela de itens das movimentações de estoque com informações detalhadas sobre produtos e transações."
+        columns:
+          - name: CD_ITMVTO_ESTOQUE
+            description: "Código único identificador do item da movimentação de estoque."
+          - name: CD_MVTO_ESTOQUE
+            description: "Código da movimentação de estoque associada ao item."
+          - name: CD_PRODUTO
+            description: "Código do produto relacionado ao item."
+          - name: CD_UNI_PRO
+            description: "Código da unidade de produto associada ao item."
+          - name: CD_LOTE
+            description: "Código do lote do produto."
+          - name: CD_ITENT_PRO
+            description: "Código do item de entrada do produto associado."
+          - name: CD_FORNECEDOR
+            description: "Código do fornecedor relacionado ao item."
+          - name: CD_ITPRE_MED
+            description: "Código do item do procedimento médico associado, se aplicável."
+          - name: DT_VALIDADE
+            description: "Data de validade do produto."
+          - name: DH_MVTO_ESTOQUE
+            description: "Data e horário da movimentação do item no estoque."
+          - name: QT_MOVIMENTACAO
+            description: "Quantidade movimentada do produto."
+          - name: VL_UNITARIO
+            description: "Valor unitário do produto movimentado."
+          - name: TP_ESTOQUE
+            description: "Tipo de estoque relacionado ao item."
+
+
+

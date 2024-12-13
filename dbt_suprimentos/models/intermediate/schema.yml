@@ -1,0 +1,61 @@
+
+version: 2
+
+sources:
+  - name: intermediate
+    description: "Dados na camada intermediate, c/ aplicacao de regras de negócios "
+    schema: intermediate
+    freshness:
+      warn_after: {count: 1, period: day}
+      error_after: {count: 1, period: day}
+
+
+    tables:
+      - name: pedidos
+        identifier: pedidos
+        description: "Tabela com dados dos pedidos de compras e seus itens"
+        columns:
+          - name: CD_ORD_COM
+            description: "Código do pedido de compra."
+          - name: CD_SOL_COM
+            description: "Código da solicitação de compra."
+          - name: CD_ESTOQUE
+            description: "Código do estoque."
+          - name: CD_FORNECEDOR
+            description: "Código do fornecedor."
+          - name: CD_PRODUTO
+            description: "Código do produto associado ao item do pedido."
+          - name: CD_UNI_PRO
+            description: "Código da unidade do produto."
+          - name: CD_MOT_CANCEL
+            description: "Código do motivo de cancelamento do pedido ou item."
+          - name: CD_USUARIO_CRIADOR_OC
+            description: "Código do usuário criador do pedido de compra."
+          - name: CD_ULTIMO_USU_ALT_OC
+            description: "Código do último usuário que alterou o pedido de compra."
+          - name: DT_ORD_COM
+            description: "Data do pedido de compra."
+          - name: DT_AUTORIZACAO
+            description: "Data de autorização do pedido de compra."
+          - name: DT_ULTIMA_ALTERACAO_OC
+            description: "Data da última alteração do pedido de compra."
+          - name: QT_COMPRADA
+            description: "Quantidade total comprada do item."
+          - name: QT_ATENDIDA
+            description: "Quantidade total atendida do item."
+          - name: QT_RECEBIDA
+            description: "Quantidade total recebida do item."
+          - name: QT_CANCELADA
+            description: "Quantidade total cancelada do item."
+          - name: VL_UNITARIO
+            description: "Valor unitário do item."
+          - name: VL_TOTAL
+            description: "Valor total do item."
+          - name: VL_CUSTO_REAL
+            description: "Custo real unitário do item."
+          - name: VL_TOTAL_CUSTO_REAL
+            description: "Custo real total do item."
+          - name: TP_ORD_COM
+            description: "Tipo do pedido de compra."
+          - name: SN_AUTORIZADO
+            description: "Indicador de autorização do pedido de compra."
