@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 
-from dags.base import BasePostgres
+from dags.extracao_suprimentos_mv.base import BasePostgres
 
 
 class UniPro(BasePostgres):
